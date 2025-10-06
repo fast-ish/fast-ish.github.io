@@ -1,0 +1,21 @@
+{
+  "name": "fastish-docs",
+  "version": "1.0.0",
+  "description": "fastish documentation site",
+  "scripts": {
+    "dev": "docsify serve . --port 3000",
+    "serve": "docsify serve .",
+    "start": "npm run dev"
+  },
+  "keywords": [
+    "fastish",
+    "aws",
+    "cdk",
+    "documentation"
+  ],
+  "author": "fastish",
+  "license": "MIT",
+  "devDependencies": {
+    "docsify-cli": "^4.4.4"
+  }
+}
