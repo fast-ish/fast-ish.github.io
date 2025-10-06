@@ -1,0 +1,24 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^http://localhost"
+    },
+    {
+      "pattern": "^http://127.0.0.1"
+    }
+  ],
+  "replacementPatterns": [],
+  "httpHeaders": [
+    {
+      "urls": ["https://github.com"],
+      "headers": {
+        "Accept-Encoding": "zstd, br, gzip, deflate"
+      }
+    }
+  ],
+  "timeout": "30s",
+  "retryOn429": true,
+  "retryCount": 5,
+  "fallbackRetryDelay": "60s",
+  "aliveStatusCodes": [200, 206, 301, 302, 307, 308]
+}

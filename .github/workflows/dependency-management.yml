@@ -1,0 +1,38 @@
+name: Dependency Management & Auto-Merge
+
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  process-dependabot:
+    name: process dependabot updates
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]'
+
+    steps:
+    - name: Dependabot metadata
+      id: metadata
+      uses: dependabot/fetch-metadata@v2
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Label by update type
+      run: |
+        if [[ "${{ steps.metadata.outputs.update-type }}" == "version-update:semver-patch" ]]; then
+          gh pr edit "$PR_URL" --add-label "patch"
+          echo "✅ patch update - ready for manual review"
+        elif [[ "${{ steps.metadata.outputs.update-type }}" == "version-update:semver-minor" ]]; then
+          gh pr edit "$PR_URL" --add-label "minor,needs-review"
+          echo "⚠️ minor update - manual review required"
+        else
+          gh pr edit "$PR_URL" --add-label "major,needs-review"
+          echo "⚠️ major update - careful review required"
+        fi
+      env:
+        PR_URL: ${{github.event.pull_request.html_url}}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

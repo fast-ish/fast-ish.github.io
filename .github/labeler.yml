@@ -1,0 +1,67 @@
+# Configuration for GitHub labeler action
+# Automatically applies labels to PRs based on file changes
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.md'
+      - 'docs/**/*'
+      - 'README.md'
+
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'package.json'
+      - 'package-lock.json'
+
+github-actions:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '.github/**/*'
+      - '.github/workflows/**/*'
+
+config:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.yml'
+      - '**/*.yaml'
+      - '**/*.json'
+      - '.gitignore'
+      - '.editorconfig'
+
+getting-started:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'getting-started/**/*'
+
+guides:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'guides/**/*'
+
+architecture:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'architecture/**/*'
+
+troubleshooting:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'troubleshooting/**/*'
+
+faq:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'faq/**/*'
+
+reference:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'reference/**/*'
+
+theme:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.css'
+      - '**/*.html'
+      - 'index.html'
