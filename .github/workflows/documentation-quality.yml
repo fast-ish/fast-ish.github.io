@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name: checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: run markdownlint
       uses: DavidAnson/markdownlint-cli2-action@v18
@@ -36,7 +36,7 @@ jobs:
 
     steps:
     - name: checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: check markdown links
       uses: gaurav-nelson/github-action-markdown-link-check@v1
@@ -53,7 +53,7 @@ jobs:
 
     steps:
     - name: checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: run cspell
       uses: streetsidesoftware/cspell-action@v8
@@ -68,7 +68,7 @@ jobs:
 
     steps:
     - name: checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: setup node.js
       uses: actions/setup-node@v4
@@ -92,7 +92,7 @@ jobs:
 
     steps:
     - name: checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: setup node.js
       uses: actions/setup-node@v4
