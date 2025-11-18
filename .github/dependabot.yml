@@ -41,3 +41,7 @@ updates:
       prefix: "ci"
       include: "scope"
     rebase-strategy: "auto"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
