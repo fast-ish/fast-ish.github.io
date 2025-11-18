@@ -106,40 +106,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v5
 
-    - name: Label based on changed files
-      uses: actions/github-script@v8
+    - name: Apply labels based on files
+      uses: actions/labeler@v5
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const files = await github.rest.pulls.listFiles({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: context.payload.pull_request.number
-          });
-
-          const labels = new Set();
-
-          for (const file of files.data) {
-            const filename = file.filename;
-
-            if (filename.startsWith('getting-started/')) labels.add('getting-started');
-            if (filename.startsWith('guides/')) labels.add('guides');
-            if (filename.startsWith('architecture/')) labels.add('architecture');
-            if (filename.startsWith('troubleshooting/')) labels.add('troubleshooting');
-            if (filename.startsWith('faq/')) labels.add('faq');
-            if (filename.startsWith('reference/')) labels.add('reference');
-            if (filename.includes('README')) labels.add('readme');
-            if (filename.endsWith('.css') || filename.endsWith('.html')) labels.add('theme');
-          }
-
-          if (labels.size > 0) {
-            await github.rest.issues.addLabels({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              labels: Array.from(labels)
-            });
-          }
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: .github/labeler.yml
+        sync-labels: false
 
   validate-docs:
     name: Validate Documentation

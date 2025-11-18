@@ -24,13 +24,13 @@ jobs:
     - name: Label by update type
       run: |
         if [[ "${{ steps.metadata.outputs.update-type }}" == "version-update:semver-patch" ]]; then
-          gh pr edit "$PR_URL" --add-label "patch-update"
+          gh pr edit "$PR_URL" --add-label "patch"
           echo "✅ patch update - ready for manual review"
         elif [[ "${{ steps.metadata.outputs.update-type }}" == "version-update:semver-minor" ]]; then
-          gh pr edit "$PR_URL" --add-label "minor-update,needs-review"
+          gh pr edit "$PR_URL" --add-label "minor,needs-review"
           echo "⚠️ minor update - manual review required"
         else
-          gh pr edit "$PR_URL" --add-label "major-update,needs-review"
+          gh pr edit "$PR_URL" --add-label "major,needs-review"
           echo "⚠️ major update - careful review required"
         fi
       env:
