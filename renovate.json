@@ -1,13 +1,23 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
-  "schedule": [
-    "before 6am on monday"
-  ],
+  "extends": ["config:recommended"],
+  "schedule": ["at any time"],
   "timezone": "UTC",
-  "prConcurrentLimit": 4,
-  "prHourlyLimit": 3,
-  "separateMinorPatch": true
+  "prConcurrentLimit": 5,
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "ignoreDeps": ["fastish:cdk-common"],
+  "packageRules": [
+    {
+      "description": "Automerge minor and patch updates",
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "Ignore internal fastish dependencies",
+      "matchPackageNames": ["fastish:cdk-common"],
+      "enabled": false
+    }
+  ]
 }
